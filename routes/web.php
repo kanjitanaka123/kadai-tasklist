@@ -31,5 +31,6 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 //Route::resource('tasks','TasksController');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::resource('tasks', 'TasksController', ['only' => ['index', 'show','create','store','edit','update','destroy']]);
+    Route::resource('tasks', 'TasksController');
 });
+//, ['only' => ['index', 'show','create','store','edit','update','destroy']]
