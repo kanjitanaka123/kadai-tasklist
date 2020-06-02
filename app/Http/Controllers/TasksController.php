@@ -84,6 +84,7 @@ class TasksController extends Controller
      */
     public function show($id)
     {
+    
         //$data = [];
         //if (\Auth::check()) { 
             // 認証済みユーザを取得
@@ -100,14 +101,15 @@ class TasksController extends Controller
        // return view('tasks.show', $data);
 
 
-
         // idの値でメッセージを検索して取得
         $task = Task::findOrFail($id);
-
+        
+     if (\Auth::id() === $task->user_id) { 
         // メッセージ詳細ビューでそれを表示
         return view('tasks.show', [
             'task' => $task,
         ]);
+     }
     }
 
     /**
@@ -136,11 +138,12 @@ class TasksController extends Controller
         
         // idの値でメッセージを検索して取得
         $task = Task::findOrFail($id);
-
+     if (\Auth::id() === $task->user_id) { 
         // メッセージ編集ビューでそれを表示
         return view('tasks.edit', [
             'task' => $task,
         ]);
+     }
     }
 
     /**
