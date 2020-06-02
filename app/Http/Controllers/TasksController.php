@@ -85,22 +85,6 @@ class TasksController extends Controller
     public function show($id)
     {
     
-        //$data = [];
-        //if (\Auth::check()) { 
-            // 認証済みユーザを取得
-            //$user = \Auth::user();
-            //$task = Task::findOrFail($id);
-
-           // $data = [
-               // 'user' => $user,
-               // 'task' => $task,
-            //];
-        //}
-
-        // Welcomeビューでそれらを表示
-       // return view('tasks.show', $data);
-
-
         // idの値でメッセージを検索して取得
         $task = Task::findOrFail($id);
         
@@ -110,6 +94,9 @@ class TasksController extends Controller
             'task' => $task,
         ]);
      }
+     else{
+          return redirect('/');   
+         }
     }
 
     /**
@@ -120,22 +107,7 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
-        //$data = [];
-        //if (\Auth::check()) { 
-            // 認証済みユーザを取得
-            //$user = \Auth::user();
-            //$task = Task::findOrFail($id);
-
-            //$data = [
-             //   'user' => $user,
-            //    'task' => $task,
-            //];
-        //}
-
-        // Welcomeビューでそれらを表示
-        //return view('tasks.edit', $data);        
-        
-        
+      
         // idの値でメッセージを検索して取得
         $task = Task::findOrFail($id);
      if (\Auth::id() === $task->user_id) { 
@@ -144,6 +116,9 @@ class TasksController extends Controller
             'task' => $task,
         ]);
      }
+      else{
+          return redirect('/');   
+          }    
     }
 
     /**
